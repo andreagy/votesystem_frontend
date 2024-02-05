@@ -11,10 +11,9 @@
 const backendURL = "https://dcff-194-110-231-227.ngrok-free.app";
 
 document.addEventListener("DOMContentLoaded", fillTopics);
-document.addEventListener("DOMContentLoaded", fillRegisteredESPs); // remove later
-
+document.addEventListener("DOMContentLoaded", fillSingleTopics); // change later as needed
 // this is the main topics holder div, add the builded topics to this element.
-const mainTopicHolderDiv = document.getElementById('main-topics-holder');
+const mainTopicHolderDiv = document.getElementById('VotesGroup');
 
 //function here that adds all the topics to the main-topics-holder div
 async function fillTopics() {
@@ -33,37 +32,43 @@ async function fillTopics() {
 
     for (const topic of json) {
         const topicContainer = document.createElement('div');
-        topicContainer.className = 'col-lg-12 mb-5';
-        const cardBorder = document.createElement('div');
-        cardBorder.className = 'card bg-light border-0 h-100';
-        const cardBody = document.createElement('div');
-        cardBody.className = 'card-body text-left p-4 p-lg-5 pt-0 pt-lg-0';
-        const feature = document.createElement('div');
-        feature.className = 'feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4';
-        const icon = document.createElement('i');
-        icon.className = 'bi bi-collection';
-        const header = document.createElement('h2');
-        header.className = 'fs-4 fw-bold';
-        header.innerHTML = topic['Title'];
-        const text = document.createElement('p');
-        text.className = 'mb-0';
-        text.innerHTML = "Description: "+topic['Description'];
+        topicContainer.className = 'list-group-item';
 
-        cardBody.appendChild(feature);
-        cardBody.appendChild(icon);
-        cardBody.appendChild(header);
-        cardBody.appendChild(text);
+            const cardBorder = document.createElement('h5');
+            cardBorder.className = 'mb-1';
+            cardBorder.innerText = topic.Title;
 
-        cardBorder.appendChild(cardBody);
+            const textTime = document.createElement('p');
+            textTime.className = 'text-muted';
+            textTime.innerHTML = "Time: "+topic['StartTime'];
+
+            const cardBody = document.createElement('div');
+            cardBody.className = 'd-flex justify-content-start';
+                const Span = document.createElement('span');
+                Span.className = 'me-2 badge bg-success';
+                Span.innerText = 'Yes: 10'; //change for the correct json attribute +topic['yes']
+                const Span2 = document.createElement('span');
+                Span2.className = 'me-2 badge bg-danger';
+                Span2.innerText = 'No: 2';  //change for the correct json attribute +topic['no']
+                const Span3 = document.createElement('span');
+                Span3.className = 'me-2 badge bg-warning';
+                Span3.innerText = 'Abstain: 0'; //change for the correct json attribute +topic['abstain']
+
+        cardBody.appendChild(Span);
+        cardBody.appendChild(Span2);
+        cardBody.appendChild(Span3);
         topicContainer.appendChild(cardBorder);
+        topicContainer.appendChild(textTime);
+        topicContainer.appendChild(cardBody);
+
         mainTopicHolderDiv.appendChild(topicContainer);
     }
-}
-
+} //Done!
 // function here that opens the single topic details page
+async function fillSingleTopics(){
+    const TopicID = document.querySelector('#exampleFormControlInput1').value;
+    const url = backendURL + "/api/getTopic/"+TopicID;
 
-async function fillRegisteredESPs() {
-    const url = backendURL + "/api/getRegisteredESPs";
     console.log(url);
     const response = await fetch(url, {
         headers: {
@@ -75,31 +80,5 @@ async function fillRegisteredESPs() {
     if (!response.ok) throw new Error('Invalid url!');
     const json = await response.json();
     console.log('result', json);
-    for (const topic of json) {
-        const topicContainer = document.createElement('div'); //condider changing to 'form'
-        topicContainer.className = 'col-lg-12 mb-5';
-        const cardBorder = document.createElement('div');
-        cardBorder.className = 'card bg-light border-0 h-100';
-        const cardBody = document.createElement('div');
-        cardBody.className = 'card-body text-center p-4 p-lg-5 pt-0 pt-lg-0';
-        const feature = document.createElement('div');
-        feature.className = 'feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4';
-        const icon = document.createElement('i');
-        icon.className = 'bi bi-collection';
-        const header = document.createElement('h2');
-        header.className = 'fs-4 fw-bold';
-        header.innerHTML = "Device: "+topic['DeviceID'];
-        const text = document.createElement('p');
-        text.className = 'mb-0';
-        text.innerHTML = "MacAddress: "+topic['MacAddress'];
 
-        cardBody.appendChild(feature);
-        cardBody.appendChild(icon);
-        cardBody.appendChild(header);
-        cardBody.appendChild(text);
-
-        cardBorder.appendChild(cardBody);
-        topicContainer.appendChild(cardBorder);
-        mainTopicHolderDiv.appendChild(topicContainer);
-    }
-} // remove later
+}
