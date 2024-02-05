@@ -33,14 +33,14 @@
             <div class="col-lg-3 text-center">
                 <h2>Register devices</h2>
                 <p class="lead">Select device</p>
-                <select class="form-select" aria-label="Default select example ">
+                <select class="form-select" aria-label="Default select example " id="SelectDeviceForm">
                     <option selected>Device 1</option>
                 </select>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Username</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1">
                 </div>
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-primary" id="SubmitButton">Submit</button>
             </div>
         </div>
     </div>
@@ -52,12 +52,12 @@
                 <h2>Unassign devices</h2>
                 <p class="lead">Select device</p>
                 <div class="mb-3">
-                    <select class="form-select" aria-label="Default select example" id="registeredEsps">
-                        <option class="registeredDeviceList" selected></option>
+                    <select class="form-select" aria-label="Default select example ">
+                        <option id = "registeredSEPSs"selected></option>
                     </select>
                 </div>
-                <button type="button" class="btn btn-primary" id="unassignDevice">Unassign</button>
-                <button type="button" class="btn btn-danger" id="unassignAll">Unassign all</button>
+                <button type="button" class="btn btn-primary" id="unassignButton">Unassign</button>
+                <button type="button" class="btn btn-primary" id="unassignAllButton">Unassign all</button>
 
             </div>
         </div>
