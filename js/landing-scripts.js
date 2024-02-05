@@ -9,6 +9,8 @@ const backendURL = "https://dcff-194-110-231-227.ngrok-free.app";
 
 document.addEventListener("DOMContentLoaded", fillRegisteredESPs);
 document.getElementById('unassignButton').addEventListener('click', UnassignESPs);
+document.getElementById('unassignAllButton').addEventListener('click', UnassignAllESPs);
+document.getElementById('SubmitButton').addEventListener('click', submitRegistrationESPs);
 document.addEventListener('submit', submitRegistrationESPs);
 
 // function here to get all the devices and fill the form select with the device options
@@ -64,13 +66,34 @@ async function UnassignESPs() {
         window.alert("Failed to unassign ESP. Please try again.");
     }
 }
+// function here that Unassign ALL ESPs
+async function UnassignAllESPs() {
+    try {
+        const endpoint = backendURL + "/api/unassignAllESPs";
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
+        if (!response.ok) {
+            throw new Error(`Failed to submit data. Status: ${response.status}`);
+        }
+        const responseData = await response.json();
+        console.log('Server response:', responseData);
+        window.alert("All ESP unassigned successfully.");
+    } catch (error) {
+        console.error('Error submitting data:', error.message);
+        window.alert("Failed to unassign ESP. Please try again.");
+    }
+}
 // function here to handle register form submit
 async function submitRegistrationESPs(){
-    evt.preventDefault(); // Prevent the default form submission behavior
+    //evt.preventDefault(); // Prevent the default form submission behavior
 
-    const usernameValue = document.querySelector('#username').value;
-    const espIDValue = document.querySelector('#espID').value;
+    const usernameValue = document.querySelector('#exampleFormControlInput1').value;
+    const espIDValue = document.querySelector('#SelectDeviceForm').value;
 
     const formData = {
         username: usernameValue,
