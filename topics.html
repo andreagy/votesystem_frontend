@@ -43,7 +43,7 @@
 
 <div class="container mt-4">
 
-    <form class="p-5" onsubmit="submitForm()">
+    <form class="p-5">
         <h2>Create a topic</h2>
         <div class="mb-3">
             <label for="topicTitle" class="form-label">Topic Title</label>
@@ -64,8 +64,7 @@
             <label for="endTime" class="form-label">End Time</label>
             <input type="datetime-local" class="form-control" id="endTime" name="endTime" required>
         </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button id='SubmitTopicBttn'type="submit" class="btn btn-primary">Submit</button>
     </form>
 
 
@@ -75,14 +74,14 @@
     <div id='VotesGroup' class="list-group">
         <!-- Topic -->
         <div class="list-group-item">
-            <h5 class="mb-1 fs-4" id="topicListTitle">Vote Topic Title</h5>
+            <h5 class="mb-1 fs-4" id="topicListTitle">Example</h5>
             <p class="mb-1" id="topicListTime">Time: <span class="text-muted">2024-02-05 12:00 PM</span></p>
 
             <!-- Vote counts with colored badges -->
             <div class="d-flex justify-content-start">
-                <span class="me-2"><span class="badge bg-success p-2 fs-6" id="voteYes">Yes: 10</span></span>
-                <span class="me-2"><span class="badge bg-danger p-2 fs-6" id="voteNo">No: 5</span></span>
-                <span><span class="badge bg-warning p-2 fs-6" id="voteAbstain">Abstain: 3</span></span>
+                <span class="me-2"><span class="badge bg-success p-2 fs-6" id="voteYes">Yes: 1</span></span>
+                <span class="me-2"><span class="badge bg-danger p-2 fs-6" id="voteNo">No: 1</span></span>
+                <span><span class="badge bg-warning p-2 fs-6" id="voteAbstain">Abstain: 1</span></span>
             </div>
             <div class="container mt-4">
 
