@@ -52,12 +52,12 @@
                 <h2>Unassign devices</h2>
                 <p class="lead">Select device</p>
                 <div class="mb-3">
-                    <select class="form-select" aria-label="Default select example ">
-                        <option selected>Device 1</option>
+                    <select class="form-select" aria-label="Default select example" id="registeredEsps">
+                        <option class="registeredDeviceList" selected></option>
                     </select>
                 </div>
-                <button type="button" class="btn btn-primary">Unassign</button>
-                <button type="button" class="btn btn-primary">Unassign all</button>
+                <button type="button" class="btn btn-primary" id="unassignDevice">Unassign</button>
+                <button type="button" class="btn btn-danger" id="unassignAll">Unassign all</button>
 
             </div>
         </div>
