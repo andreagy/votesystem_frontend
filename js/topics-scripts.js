@@ -37,7 +37,7 @@ async function fillTopics() {
         const cardBorder = document.createElement('div');
         cardBorder.className = 'card bg-light border-0 h-100';
         const cardBody = document.createElement('div');
-        cardBody.className = 'card-body text-center p-4 p-lg-5 pt-0 pt-lg-0';
+        cardBody.className = 'card-body text-left p-4 p-lg-5 pt-0 pt-lg-0';
         const feature = document.createElement('div');
         feature.className = 'feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4';
         const icon = document.createElement('i');
