@@ -41,6 +41,7 @@ async function fillRegisteredESPs() {
         console.error('Error:', error.message);
     }
 }
+
 // function here to get all the devices and fill the form select with the device options
 async function fillUnassignESPs() {
     try {
