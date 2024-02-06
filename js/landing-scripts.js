@@ -8,10 +8,11 @@
 const backendURL = "https://dcff-194-110-231-227.ngrok-free.app";
 
 document.addEventListener("DOMContentLoaded", fillRegisteredESPs);
+document.addEventListener("DOMContentLoaded", fillUnassignESPs);
 document.getElementById('unassignButton').addEventListener('click', UnassignESPs);
 document.getElementById('unassignAllButton').addEventListener('click', UnassignAllESPs);
 document.getElementById('SubmitButton').addEventListener('click', submitRegistrationESPs);
-document.addEventListener('submit', submitRegistrationESPs);
+//document.addEventListener('submit', submitRegistrationESPs);
 
 // function here to get all the devices and fill the form select with the device options
 async function fillRegisteredESPs() {
@@ -33,6 +34,33 @@ async function fillRegisteredESPs() {
         const topicContainer = document.getElementById('registeredSEPSs'); // Consider changing to 'form'
         for (const esp of json) {
             const espInfoElement = document.createElement('div');
+            espInfoElement.textContent = `${esp.DeviceIndex}`;
+            topicContainer.appendChild(espInfoElement);
+        }
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+}
+// function here to get all the devices and fill the form select with the device options
+async function fillUnassignESPs() {
+    try {
+        const url = backendURL + "/api/getUnassignedESPs";
+        console.log(url);
+        const response = await fetch(url, {
+            headers: {
+                'Access-Control-Allow-Origin': backendURL,
+                'Access-Control-Allow-Headers': '*',
+                'ngrok-skip-browser-warning': 'true',
+            }, mode: 'cors'
+        });
+        if (!response.ok) {
+            throw new Error('Invalid URL or failed to fetch data.');
+        }
+        const json = await response.json();
+        console.log('Result:', json);
+        const topicContainer = document.getElementById('SelectDeviceForm');
+        for (const esp of json) {
+            const espInfoElement = document.createElement('option');
             espInfoElement.textContent = `${esp.DeviceIndex}`;
             topicContainer.appendChild(espInfoElement);
         }
