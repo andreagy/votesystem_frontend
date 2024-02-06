@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", fillUnassignESPs);
 document.getElementById('unassignButton').addEventListener('click', UnassignESPs);
 document.getElementById('unassignAllButton').addEventListener('click', UnassignAllESPs);
 document.getElementById('SubmitButton').addEventListener('click', submitRegistrationESPs);
-//document.addEventListener('submit', submitRegistrationESPs);
+document.addEventListener('submit', submitRegistrationESPs);
 
 // function here to get all the devices and fill the form select with the device options
 async function fillRegisteredESPs() {
@@ -33,7 +33,7 @@ async function fillRegisteredESPs() {
         console.log('Result:', json);
         const topicContainer = document.getElementById('registeredSEPSs'); // Consider changing to 'form'
         for (const esp of json) {
-            const espInfoElement = document.createElement('div');
+            const espInfoElement = document.createElement('option');
             espInfoElement.textContent = `${esp.DeviceIndex}`;
             topicContainer.appendChild(espInfoElement);
         }
@@ -41,6 +41,7 @@ async function fillRegisteredESPs() {
         console.error('Error:', error.message);
     }
 }
+
 // function here to get all the devices and fill the form select with the device options
 async function fillUnassignESPs() {
     try {
