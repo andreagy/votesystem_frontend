@@ -1,69 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Heroic Features - Start Bootstrap Template</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/topics-styles.css" rel="stylesheet" />
-    </head>
-    <body>
-        <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-lg-5">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                    </ul>
-                </div>
+<html lang="en" xmlns:max-width="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Topics</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/topics-styles.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- Responsive navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#!">Vote System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Manage devices</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Header-->
+<header class="py-1">
+    <div class="container px-lg-5">
+        <div class="p-2 p-lg-2 text-center">
+            <div class="m-1 m-lg-1">
+                <h6 class="display-6 fw-bold">Votes</h6>
             </div>
-        </nav>
-        <!-- Header-->
-        <header class="py-5">
-            <div class="container px-lg-5">
-                <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
-                    <div class="m-4 m-lg-5">
-                        <h1 class="display-5 fw-bold">Topics</h1>
-                        <p class="fs-4">Bootstrap utility classes are used to create this jumbotron since the old component has been removed from the framework. Why create custom CSS when you can use utilities?</p>
-                        <a class="btn btn-primary btn-lg" href="#!">Lets give up! :)</a>
-                    </div>
-                </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="container mt-4">
+
+    <form class="p-5">
+        <h2>Create a topic</h2>
+        <div class="mb-3">
+            <label for="topicTitle" class="form-label">Topic Title</label>
+            <input type="text" class="form-control" id="topicTitle" name="topicTitle" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="topicDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="topicDescription" name="topicDescription" rows="3" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="startTime" class="form-label">Start Time</label>
+            <input type="datetime-local" class="form-control" id="startTime" name="startTime" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="endTime" class="form-label">End Time</label>
+            <input type="datetime-local" class="form-control" id="endTime" name="endTime" required>
+        </div>
+        <button id='SubmitTopicBttn'type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+    <h2>Recent Votings</h2>
+
+    <!-- Loop through topics from JS and append them -->
+    <div id='VotesGroup' class="list-group">
+        <!-- Topic -->
+        <div class="list-group-item">
+            <h5 class="mb-1 fs-4" id="topicListTitle">Example</h5>
+            <p class="mb-1" id="topicListTime">Time: <span class="text-muted">2024-02-05 12:00 PM</span></p>
+
+            <!-- Vote counts with colored badges -->
+            <div class="d-flex justify-content-start">
+                <span class="me-2"><span class="badge bg-success p-2 fs-6" id="voteYes">Yes: 1</span></span>
+                <span class="me-2"><span class="badge bg-danger p-2 fs-6" id="voteNo">No: 1</span></span>
+                <span><span class="badge bg-warning p-2 fs-6" id="voteAbstain">Abstain: 1</span></span>
             </div>
-        </header>
-        <!-- Page Content-->
-        <section class="pt-4">
-            <div class="container px-lg-5">
-                <!-- Page Features-->
-                <div class="row gx-lg-5" id="main-topics-holder">
-                    <div class="col-lg-12 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-collection"></i></div>
-                                <h2 class="fs-4 fw-bold">Topic quick view</h2>
-                                <p class="mb-0">This card will repeat for each topic! Use JS to create these divs and add them to "main-topics-holder" div.</p>
+            <div class="container mt-4">
+
+                <p class="d-inline-flex gap-1 p-2">
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseTopic" role="button"
+                       aria-expanded="false" aria-controls="collapseTopic">
+                        Expand
+                    </a>
+                </p>
+
+                <div class="collapse" id="collapseTopic">
+                    <div class="card card-body">
+                        <!-- List with usernames and votes -->
+                        <div class="row">
+                            <div class="col">
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        JohnDoe
+                                        <span class="badge bg-success">Yes</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        JaneSmith
+                                        <span class="badge bg-danger">No</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        BobJohnson
+                                        <span class="badge bg-warning">Abstain</span>
+                                    </li>
+                                    <!-- Add more list items as needed -->
+                                </ul>
                             </div>
                         </div>
+                        <!-- End of list -->
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2024</p></div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/topics-scripts.js"></script>
-    </body>
+        </div>
+        <!-- End of sample topic -->
+    </div>
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/topics-scripts.js"></script>
+</body>
 </html>
