@@ -31,9 +31,9 @@ async function fillRegisteredESPs() {
         }
         const json = await response.json();
         console.log('Result:', json);
-        const topicContainer = document.getElementById('registeredSEPSs'); // Consider changing to 'form'
+        const topicContainer = document.getElementById('registeredSEPSs');
         for (const esp of json) {
-            const espInfoElement = document.createElement('div');
+            const espInfoElement = document.createElement('option');
             espInfoElement.textContent = `${esp.DeviceIndex}`;
             topicContainer.appendChild(espInfoElement);
         }
@@ -41,7 +41,7 @@ async function fillRegisteredESPs() {
         console.error('Error:', error.message);
     }
 }
-// function here to get all the devices and fill the form select with the device options
+// function here to get all the unassigned devices and fill the form with the device options
 async function fillUnassignESPs() {
     try {
         const url = backendURL + "/api/getUnassignedESPs";
@@ -89,6 +89,7 @@ async function UnassignESPs() {
         const responseData = await response.json();
         console.log('Server response:', responseData);
         window.alert("ESP unassigned successfully.");
+        location.reload(true);
     } catch (error) {
         console.error('Error submitting data:', error.message);
         window.alert("Failed to unassign ESP. Please try again.");
@@ -111,6 +112,7 @@ async function UnassignAllESPs() {
         const responseData = await response.json();
         console.log('Server response:', responseData);
         window.alert("All ESP unassigned successfully.");
+        location.reload(true);
     } catch (error) {
         console.error('Error submitting data:', error.message);
         window.alert("Failed to unassign ESP. Please try again.");
@@ -143,7 +145,9 @@ async function submitRegistrationESPs(){
         const responseData = await response.json();
         console.log('Server response:', responseData);
         window.alert("User assigned to ESP successfully.");
+        location.reload(true);
     } catch (error) {
         console.error('Error submitting data:', error.message);
     }
+
 }

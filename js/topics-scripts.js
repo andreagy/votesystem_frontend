@@ -10,7 +10,7 @@
 // this is the backend URL, you shoud add the endpoint and create a new string.
 const backendURL = "https://dcff-194-110-231-227.ngrok-free.app";
 
-document.getElementById('SubmitTopicBttn').addEventListener('submit', CreateNewTopic);
+document.getElementById('SubmitTopicBttn').addEventListener('click', CreateNewTopic);
 document.addEventListener("DOMContentLoaded", fillTopics);
 //document.addEventListener("DOMContentLoaded", fillSingleTopics); // change later as needed
 
@@ -93,14 +93,14 @@ async function CreateNewTopic(){
 
     const Title = document.querySelector('#topicTitle').value;
     const Description = document.querySelector('#topicDescription').value;
-    const StartDate = document.querySelector('#startTime').value;
-    const EndDates = document.querySelector('#endTime').value;
+    const StartTime = document.querySelector('#startTime').value;
+    const EndTime = document.querySelector('#endTime').value;
 
     const formData = {
         Title: Title,
         Description: Description,
-        StartDate: StartDate,
-        EndDates: EndDates,
+        StartTime: StartTime,
+        EndTime: EndTime,
     };
 
     try {
@@ -117,7 +117,7 @@ async function CreateNewTopic(){
         }
         const responseData = await response.json();
         console.log('Server response:', responseData);
-        window.alert("User assigned to ESP successfully.");
+        window.alert("Topic create successfully");
     } catch (error) {
         console.error('Error submitting data:', error.message);
     }
