@@ -1,10 +1,4 @@
-/*!
-* Start Bootstrap - Full Width Pics v5.0.6 (https://startbootstrap.com/template/full-width-pics)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-full-width-pics/blob/master/LICENSE)
-*/
-// This file is intentionally blank
-// Use this file to add JavaScript to your project
+// this is the backend URL
 const backendURL = "https://dcff-194-110-231-227.ngrok-free.app";
 
 document.addEventListener("DOMContentLoaded", fillRegisteredESPs);
@@ -12,12 +6,11 @@ document.addEventListener("DOMContentLoaded", fillUnassignESPs);
 document.getElementById('unassignButton').addEventListener('click', UnassignESPs);
 document.getElementById('unassignAllButton').addEventListener('click', UnassignAllESPs);
 document.getElementById('SubmitButton').addEventListener('click', submitRegistrationESPs);
-//document.addEventListener('submit', submitRegistrationESPs);
 
 // function here to get all the devices and fill the form select with the device options
 async function fillRegisteredESPs() {
     try {
-        const url = backendURL + "/api/getRegisteredESPs";
+        const url = backendURL + "/api/getAssignedESPs";
         console.log(url);
         const response = await fetch(url, {
             headers: {
