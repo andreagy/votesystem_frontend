@@ -49,76 +49,26 @@
             <label for="topicTitle" class="form-label">Topic Title</label>
             <input type="text" class="form-control" id="topicTitle" name="topicTitle" required>
         </div>
-
         <div class="mb-3">
             <label for="topicDescription" class="form-label">Description</label>
             <textarea class="form-control" id="topicDescription" name="topicDescription" rows="3" required></textarea>
         </div>
-
         <div class="mb-3">
             <label for="startTime" class="form-label">Start Time</label>
-            <input placeholder="YYYY-MM-DD HH:MM:SS" class="form-control" id="startTime" name="startTime" required>
+            <input type="datetime-local" placeholder="YYYY-MM-DD HH:MM:SS" class="form-control" id="startTime" name="startTime" required>
         </div>
-
         <div class="mb-3">
             <label for="endTime" class="form-label">End Time</label>
-            <input placeholder="YYYY-MM-DD HH:MM:SS" class="form-control" id="endTime" name="endTime" required>
+            <input type="datetime-local" placeholder="YYYY-MM-DD HH:MM:SS" class="form-control" id="endTime" name="endTime" required>
         </div>
         <button id='SubmitTopicBttn'type="submit" class="btn btn-primary">Submit</button>
     </form>
 
-
     <h2>Recent Votings</h2>
-
     <!-- Loop through topics from JS and append them -->
     <div id='VotesGroup' class="list-group">
         <!-- Topic -->
-        <div class="list-group-item">
-            <h5 class="mb-1 fs-4" id="topicListTitle">Example</h5>
-            <p class="mb-1" id="topicListTime">Time: <span class="text-muted">2024-02-05 12:00 PM</span></p>
 
-            <!-- Vote counts with colored badges -->
-            <div class="d-flex justify-content-start">
-                <span class="me-2"><span class="badge bg-success p-2 fs-6" id="voteYes">Yes: 1</span></span>
-                <span class="me-2"><span class="badge bg-danger p-2 fs-6" id="voteNo">No: 1</span></span>
-                <span><span class="badge bg-warning p-2 fs-6" id="voteAbstain">Abstain: 1</span></span>
-            </div>
-            <div class="container mt-4">
-
-                <p class="d-inline-flex gap-1 p-2">
-                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseTopic" role="button"
-                       aria-expanded="false" aria-controls="collapseTopic">
-                        Expand
-                    </a>
-                </p>
-
-                <div class="collapse" id="collapseTopic">
-                    <div class="card card-body">
-                        <!-- List with usernames and votes -->
-                        <div class="row">
-                            <div class="col">
-                                <ul class="list-group">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        JohnDoe
-                                        <span class="badge bg-success">Yes</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        JaneSmith
-                                        <span class="badge bg-danger">No</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        BobJohnson
-                                        <span class="badge bg-warning">Abstain</span>
-                                    </li>
-                                    <!-- Add more list items as needed -->
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- End of list -->
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- End of sample topic -->
     </div>
 </div>
