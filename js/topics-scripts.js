@@ -70,18 +70,6 @@ async function fillTopics() {
         const json2 = await response2.json();
         console.log('result', json2);
 
-        const combinedData = [];
-        json2.forEach(vote => {
-            const user = json.find(user => user.UserID === vote.UserID);
-            if (user) {
-                combinedData.push({
-                    UserID: user.UserID,
-                    Username: user.Username,
-                    VoteType: vote.VoteType
-                });
-            }
-        });
-
         const cardBorder = document.createElement('h5');
         cardBorder.className = 'mb-1 fs-4';
         cardBorder.innerText = topic.Title;
@@ -100,11 +88,11 @@ async function fillTopics() {
         // Count the votes for this topic
         let yesVotes = 0;
         let noVotes = 0;
-        combinedData.forEach(data => {
-            if (data.UserID === topic.UserID) {
-                if (data.VoteType === "upvote") {
+        json2.forEach(data => {
+            if (data.TopicID === topic.TopicID) {
+                if (data.VoteType === "Yes") {
                     yesVotes++;
-                } else if (data.VoteType === "downvote") {
+                } else if (data.VoteType === "No") {
                     noVotes++;
                 }
             }
@@ -131,15 +119,25 @@ async function fillTopics() {
         ButtonExpand6.className = 'col'
         const ButtonExpand7 = document.createElement("ul");
         ButtonExpand7.className = 'list-group'
-        const ButtonExpand8 = document.createElement("li");
-        ButtonExpand8.className = 'list-group-item d-flex justify-content-between align-items-center'
-        ButtonExpand8.innerHTML = combinedData['Username'];
-        const ButtonExpand8Span = document.createElement('span');
-        ButtonExpand8Span.className = 'badge bg-success';
-        ButtonExpand8Span.innerText = combinedData['VoteType'];
 
-        ButtonExpand8.appendChild(ButtonExpand8Span);
-        ButtonExpand7.appendChild(ButtonExpand8);
+        // Loop through combinedData to display information about each user
+        json2.forEach(userData => {
+            const ButtonExpand8 = document.createElement("li");
+            ButtonExpand8.className = 'list-group-item d-flex justify-content-between align-items-center';
+            ButtonExpand8.innerHTML = 'User ID:\t' + userData.UserID;
+
+            const voteTypeSpan = document.createElement("span");
+            voteTypeSpan.className = 'badge';
+            if (userData.VoteType === "Yes") {
+                voteTypeSpan.classList.add('bg-success');
+            } else {
+                voteTypeSpan.classList.add('bg-danger');
+            }
+            voteTypeSpan.innerText = userData.VoteType;
+            ButtonExpand8.appendChild(voteTypeSpan);
+            ButtonExpand7.appendChild(ButtonExpand8);
+        });
+
         ButtonExpand6.appendChild(ButtonExpand7);
         ButtonExpand5.appendChild(ButtonExpand6);
         ButtonExpand4.appendChild(ButtonExpand5);
@@ -161,7 +159,7 @@ async function fillTopics() {
     }
 }
      //Done!
-    async function CreateNewTopic(){
+async function CreateNewTopic(){
         const Title = document.querySelector('#topicTitle').value;
         const Description = document.querySelector('#topicDescription').value;
         const rawStartTime = document.querySelector('#startTime').value;
