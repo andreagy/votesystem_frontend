@@ -124,7 +124,7 @@ async function fillTopics() {
         json2.forEach(userData => {
             const ButtonExpand8 = document.createElement("li");
             ButtonExpand8.className = 'list-group-item d-flex justify-content-between align-items-center';
-            ButtonExpand8.innerHTML = 'User ID:\t' + userData.UserID;
+            ButtonExpand8.innerHTML = 'User ID:\t' + userData.UserID + ',\tUser name:\t'+userData.Username;
 
             const voteTypeSpan = document.createElement("span");
             voteTypeSpan.className = 'badge';
