@@ -88,12 +88,15 @@ async function fillTopics() {
         // Count the votes for this topic
         let yesVotes = 0;
         let noVotes = 0;
+        let abstainVotes = 0;
         json2.forEach(data => {
             if (data.TopicID === topic.TopicID) {
                 if (data.VoteType === "Yes") {
                     yesVotes++;
                 } else if (data.VoteType === "No") {
                     noVotes++;
+                } else if (data.VoteType === "Pass"){
+                    abstainVotes++;
                 }
             }
         });
@@ -107,6 +110,10 @@ async function fillTopics() {
         const Span2 = document.createElement('span');
         Span2.className = 'me-2 badge bg-danger p-2 fs-6';
         Span2.innerText = 'No: ' + noVotes;
+
+        const Span3 = document.createElement('span');
+        Span3.className = 'me-2 badge bg-warning p-2 fs-6';
+        Span3.innerText = 'Abstain: ' + abstainVotes;
 
         const ButtonExpand3 = document.createElement("div");
         ButtonExpand3.className = 'collapse'
@@ -130,8 +137,10 @@ async function fillTopics() {
             voteTypeSpan.className = 'badge';
             if (userData.VoteType === "Yes") {
                 voteTypeSpan.classList.add('bg-success');
-            } else {
+            } else if (userData.VoteType === "No"){
                 voteTypeSpan.classList.add('bg-danger');
+            }else {
+                voteTypeSpan.classList.add('bg-warning');
             }
             voteTypeSpan.innerText = userData.VoteType;
             ButtonExpand8.appendChild(voteTypeSpan);
@@ -148,6 +157,7 @@ async function fillTopics() {
 
         Span0.appendChild(Span);
         Span0.appendChild(Span2);
+        Span0.appendChild(Span3);
         cardBody.appendChild(Span0);
         textTime0.appendChild(textTime);
         topicContainer.appendChild(cardBorder);
