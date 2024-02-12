@@ -95,7 +95,7 @@ async function fillTopics() {
                     yesVotes++;
                 } else if (data.VoteType === "No") {
                     noVotes++;
-                } else if (data.VoteType === "Pass"){
+                } else if (data.VoteType === "Abstain"){
                     abstainVotes++;
                 }
             }
