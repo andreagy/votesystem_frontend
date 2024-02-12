@@ -95,7 +95,7 @@ async function fillTopics() {
                     yesVotes++;
                 } else if (data.VoteType === "No") {
                     noVotes++;
-                } else if (data.VoteType === "Abstain"){
+                } else if (data.VoteType === "Abstain"){    //remove this condition in case "Abstain" neither "Pass" works
                     abstainVotes++;
                 }
             }
@@ -112,7 +112,7 @@ async function fillTopics() {
         Span2.innerText = 'No: ' + noVotes;
 
         const Span3 = document.createElement('span');
-        Span3.className = 'me-2 badge bg-warning p-2 fs-6';
+        Span3.className = 'me-2 badge bg-secondary p-2 fs-6';
         Span3.innerText = 'Abstain: ' + abstainVotes;
 
         const ButtonExpand3 = document.createElement("div");
@@ -140,7 +140,7 @@ async function fillTopics() {
             } else if (userData.VoteType === "No"){
                 voteTypeSpan.classList.add('bg-danger');
             }else {
-                voteTypeSpan.classList.add('bg-warning');
+                voteTypeSpan.classList.add('bg-secondary');
             }
             voteTypeSpan.innerText = userData.VoteType;
             ButtonExpand8.appendChild(voteTypeSpan);
